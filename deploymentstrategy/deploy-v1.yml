@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend-moviestreaming
-        image: persevcareers6577/custom-images:netflix-v1
+        image: persevcareers/custom-images:netflix-v1
         ports:
         - containerPort: 80
       imagePullSecrets:
@@ -25,11 +25,10 @@ kind: Service
 metadata:
   name: movie-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: movie-dev
   ports:
     - protocol: TCP
-      port: 8080
+      port: 80
       targetPort: 80
-      nodePort: 30006
